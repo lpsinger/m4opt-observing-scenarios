@@ -1,29 +1,21 @@
 [project]
 name = "m4opt-paper"
-description = "UVEX EMGW M4OPT paper"
+version = "0.0.0"
+description = "UVEX EMGW observing scenarios"
 authors = [
     {name = "Leo Singer",email = "leo.p.singer@nasa.gov"}
 ]
-# FIXME: CPLEX does not yet support Python 3.12 and newer.
+# FIXME: CPLEX does not yet support Python 3.13 and newer.
 # See https://ibm-data-and-ai.ideas.ibm.com/ideas/CPLEX-I-148
-requires-python = ">=3.11, <3.12"
+requires-python = ">=3.11, <3.13"
 dependencies = [
-    # FIXME: The latest version of CPLEX on PyPI does not yet support macOS. Remove this when fixed.
-    # See https://www.ibm.com/mysupport/s/defect/aCIKe000000bpzJ/dt421849?language=en_US
-    "cplex < 22.1.2",
+    "cplex",
     "dask-jobqueue",
     "dask[diagnostics]",
     "ipykernel",
     "ipython",
-    "m4opt (>=1.0.0,<2.0.0)",
+    "m4opt (>=2.0.0,<3.0.0)",
 ]
-
-[tool.poetry]
-package-mode = false
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
 
 [tool.codespell]
 ignore-words-list = """
