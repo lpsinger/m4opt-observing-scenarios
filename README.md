@@ -1,3 +1,3 @@
 # Optimal Follow-Up of Gravitational-Wave Events with the UltraViolet EXplorer (UVEX)
 
-This is the source for the tables and figures as well as the LaTeX source for the paper titled _Optimal Follow-Up of Gravitational-Wave Events with the UltraViolet EXplorer (UVEX)_. The full text is available on arXiv as https://arxiv.org/abs/2502.17560.
+This repository contains re-runs of the simulations from the paper _Optimal Follow-Up of Gravitational-Wave Events with the UltraViolet EXplorer (UVEX)_ (https://arxiv.org/abs/2502.17560) but based on more recent GW detector observing scenarios from github.com/lpsinger/observing-scenarios-simulations.

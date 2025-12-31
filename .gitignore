@@ -1,14 +1,3 @@
 __pycache__
-*.aux
-*.bak
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
-*.log
-*.out
-*.synctex.gz
 *.zip
 data
-m4opt.pdf
-runs_SNR-10.zip
