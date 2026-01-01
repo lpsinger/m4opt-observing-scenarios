@@ -6,8 +6,8 @@ from astropy.table import QTable
 from rate_stats import poisson_lognormal_rate_quantiles
 from scipy import stats
 
-base_path = Path("runs_SNR-10")
-runs = ["O5", "O6"]
+base_path = Path("runs")
+runs = ["O5a", "O5b", "O5c"]
 
 main_table = QTable.read("data/events.ecsv")
 
