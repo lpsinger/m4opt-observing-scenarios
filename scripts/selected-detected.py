@@ -21,13 +21,11 @@ main_table = main_table[main_table["objective_value"] >= cutoff]
 event_tables_by_run = {run: main_table[main_table["run"] == run] for run in runs}
 
 
-# O3 R&P paper Table II row 1 last column:
-# 5%, 50%, and 95% quantiles of the total merger rate
-# in Gpc^-3 yr^-1.
-# See https://doi.org/10.1103/PhysRevX.13.011048
-lo = 100
-mid = 240
-hi = 510
+# Full astrophysical rate density for all mergers
+# GWTC-4 paper (https://arxiv.org/pdf/2508.18083) Table 2 BPG, full cell
+lo = 50
+mid = 110
+hi = 240
 
 (standard_90pct_interval,) = np.diff(stats.norm.interval(0.9))
 log_target_rate_mu = np.log(mid)
