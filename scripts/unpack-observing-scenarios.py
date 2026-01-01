@@ -13,19 +13,19 @@ from astropy.cosmology import z_at_value
 from astropy.table import QTable, join, vstack
 from tqdm.auto import tqdm
 
-runs = ["O5", "O6"]
+runs = ["O5a", "O5b", "O5c"]
 out_root = pathlib.Path("data")
 
 for run in runs:
     (out_root / run).mkdir(parents=True, exist_ok=True)
 
-with zipfile.ZipFile("runs_SNR-10.zip") as archive:
-    in_root = zipfile.Path(archive) / "runs_SNR-10"
+with zipfile.ZipFile("runs.zip") as archive:
+    in_root = zipfile.Path(archive) / "runs"
 
     # Read summary tables, join together
     tables = []
     for run in tqdm(runs, desc="Reading summary tables"):
-        in_run = in_root / f"{run}HLVK" / "farah"
+        in_run = in_root / run / "bgp"
         table = reduce(
             join,
             (
@@ -61,7 +61,7 @@ with zipfile.ZipFile("runs_SNR-10.zip") as archive:
     z = z_at_value(cosmo.luminosity_distance, table["distance"] * u.Mpc).to_value(
         u.dimensionless_unscaled
     )
-    max_mass2 = 3
+    max_mass2 = 2.5
     table = table[table["mass2"] <= max_mass2 * (1 + z)]
 
     table.write(out_root / "observing-scenarios.ecsv", overwrite=True)
@@ -69,7 +69,7 @@ with zipfile.ZipFile("runs_SNR-10.zip") as archive:
     # Copy FITS files
     for row in tqdm(table, desc="Copying FITS files"):
         filename = f"{row['coinc_event_id']}.fits"
-        in_path = in_root / f"{row['run']}HLVK" / "farah" / "allsky" / filename
+        in_path = in_root / run / "bgp" / "allsky" / filename
         out_path = out_root / row["run"] / filename
         with in_path.open("rb") as in_file, out_path.open("wb") as out_file:
             copyfileobj(in_file, out_file)
