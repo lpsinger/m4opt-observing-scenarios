@@ -76,7 +76,7 @@ crossover_distance = (
     max_distance * (min_area / max_area).to_value(u.dimensionless_unscaled) ** 0.25
 )
 
-for run in ["O4", "O5a", "O5b", "O5c"]:
+for run in ["O5a", "O5b", "O5c"]:
     table = main_table[main_table["run"] == run]
     selected_table = table[table["objective_value"] >= cutoff]
 
