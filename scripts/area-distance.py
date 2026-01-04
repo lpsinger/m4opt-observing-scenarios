@@ -4,8 +4,6 @@ import numpy as np
 import synphot
 from astropy import units as u
 from astropy.coordinates import ICRS, EarthLocation
-from astropy.cosmology import Planck15 as cosmo
-from astropy.cosmology import z_at_value
 from astropy.table import QTable
 from astropy.time import Time
 from astropy.visualization import quantity_support
@@ -79,12 +77,6 @@ crossover_distance = (
 for run in ["O5a", "O5b", "O5c"]:
     table = main_table[main_table["run"] == run]
     selected_table = table[table["objective_value"] >= cutoff]
-
-    z = z_at_value(cosmo.luminosity_distance, table["distance"] * u.Mpc).to_value(
-        u.dimensionless_unscaled
-    )
-    m2 = table["mass2"] / (1 + z)
-    table = table[(m2 <= 3)]
 
     width, height = plt.rcParams["figure.figsize"]
     default_fig_width_height_ratio = width / height
