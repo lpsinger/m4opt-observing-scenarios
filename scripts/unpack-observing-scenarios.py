@@ -69,7 +69,7 @@ with zipfile.ZipFile("runs.zip") as archive:
     # Copy FITS files
     for row in tqdm(table, desc="Copying FITS files"):
         filename = f"{row['coinc_event_id']}.fits"
-        in_path = in_root / run / "bgp" / "allsky" / filename
+        in_path = in_root / row["run"] / "bgp" / "allsky" / filename
         out_path = out_root / row["run"] / filename
         with in_path.open("rb") as in_file, out_path.open("wb") as out_file:
             copyfileobj(in_file, out_file)
