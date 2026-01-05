@@ -232,7 +232,7 @@ for run in ["O5a", "O5b", "O5c"]:
     ax_joint.text(
         np.sqrt(crossover_distance * max_distance),
         np.sqrt(min_area * max_area),
-        "Area $\propto$ distance$^{-4}$\n",
+        "Area $\\propto$ distance$^{-4}$\n",
         rotation=-45,
         **kwargs,
     )
