@@ -18,7 +18,7 @@ def task(exptime_s):
 
     from m4opt._cli import app
 
-    cmdline = f"schedule --mission=uvex --bandpass=NUV --deadline=6hour --timelimit=2hour --memory=10GiB --exptime-min={exptime_s}s --nside=128 --jobs={job_cpu} data/{run}/{event_id}.fits data/{run}/{event_id}-exptime-{exptime_s}s.ecsv"
+    cmdline = f"schedule --mission=uvex --bandpass=FUV --deadline=6hour --timelimit=2hour --memory=10GiB --exptime-min={exptime_s}s --nside=128 --jobs={job_cpu} data/{run}/{event_id}.fits data/{run}/{event_id}-exptime-{exptime_s}s.ecsv"
     args = shlex.split(cmdline)
     print(cmdline)
     try:
