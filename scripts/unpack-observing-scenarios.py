@@ -7,6 +7,7 @@ from functools import reduce
 from shutil import copyfileobj
 from tempfile import NamedTemporaryFile
 
+import numpy as np
 from astropy import units as u
 from astropy.cosmology import Planck15 as cosmo
 from astropy.cosmology import z_at_value
@@ -58,11 +59,14 @@ with zipfile.ZipFile("runs.zip") as archive:
     del tables
 
     # Keep only NSBH/BNS events
-    z = z_at_value(cosmo.luminosity_distance, table["distance"] * u.Mpc).to_value(
-        u.dimensionless_unscaled
+    table["redshift"] = z_at_value(
+        cosmo.luminosity_distance, table["distance"] * u.Mpc
+    ).to_value(u.dimensionless_unscaled)
+    max_ns_mass = 2.5
+    table = table[table["mass2"] <= max_ns_mass * (1 + table["redshift"])]
+    table["source_class"] = np.where(
+        table["mass1"] <= max_ns_mass * (1 + table["redshift"]), "BNS", "NSBH"
     )
-    max_mass2 = 2.5
-    table = table[table["mass2"] <= max_mass2 * (1 + z)]
 
     table.write(out_root / "observing-scenarios.ecsv", overwrite=True)
 
