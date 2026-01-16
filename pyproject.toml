@@ -14,7 +14,7 @@ dependencies = [
     "dask[diagnostics]",
     "ipykernel",
     "ipython",
-    "m4opt (>=2.0.0,<3.0.0)",
+    "m4opt >=2.2.0",
 ]
 
 [tool.codespell]
