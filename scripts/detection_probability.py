@@ -50,10 +50,15 @@ def get_detection_probability_known_position(plan, event_row, plan_args):
         limmag = mission.detector.get_limmag(
             plan_args["snr"], fields["duration"], spectrum, plan_args["bandpass"]
         ).max()
-    lim_absmag = limmag - Distance(event_row["distance"] * u.Mpc).distmod
-    return stats.norm(
-        loc=plan_args["absmag_mean"], scale=plan_args["absmag_stdev"]
-    ).cdf(lim_absmag.to_value(u.mag))
+    lim_absmag = (limmag - Distance(event_row["distance"] * u.Mpc).distmod).to_value(
+        u.mag
+    )
+    if plan_args["absmag_stdev"] == 0:
+        return float(lim_absmag >= plan_args["absmag_mean"])
+    else:
+        return stats.norm(
+            loc=plan_args["absmag_mean"], scale=plan_args["absmag_stdev"]
+        ).cdf(lim_absmag)
 
 
 def get_detection_probability_unknown_position(plan, skymap_moc, plan_args):
