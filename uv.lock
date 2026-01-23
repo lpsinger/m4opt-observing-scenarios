@@ -1215,7 +1215,7 @@ wheels = [
 
 [[package]]
 name = "m4opt"
-version = "2.3.0"
+version = "2.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aep8" },
@@ -1243,9 +1243,9 @@ dependencies = [
     { name = "typing-extensions", marker = "python_full_version < '3.12'" },
     { name = "xdg-base-dirs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/82/b5/d63ca9acc80d26de485353f70ae32089d615a6072919f70b3911a00713da/m4opt-2.3.0.tar.gz", hash = "sha256:d632cdecaca8b2de0239147aa29239176c0e194baf5feef8fd452b05a47082e3", size = 1254003, upload-time = "2026-01-23T03:37:20.845Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/13/41/d4a11b6380e5a3368c9250ed3b447bd4f2568d9c8b13aeb079a5c6d4ec3a/m4opt-2.3.1.tar.gz", hash = "sha256:93fcfc00e32fef53827506d5c98377abb3514d062e38c82c03af24b90b3f6d7b", size = 1254284, upload-time = "2026-01-23T18:51:35.291Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/49/5e/c6881b8c5d52dcdddcb28cf9392abe5ddb672201be68fff01fa79c6a58a5/m4opt-2.3.0-py3-none-any.whl", hash = "sha256:bd8e68e9b46e68998794873f122619a9acbb36c86fa6a7be69e980766c01b2ed", size = 1278040, upload-time = "2026-01-23T03:37:18.621Z" },
+    { url = "https://files.pythonhosted.org/packages/eb/96/970b00225abfadca3247cab26e25e85a6726d0b8bddedac22d5e50f2ab05/m4opt-2.3.1-py3-none-any.whl", hash = "sha256:9a3d715099dab1ead894a562360ba8cc87f6a7f68ac175f6cbf3a3b09c5ac49a", size = 1278178, upload-time = "2026-01-23T18:51:33.353Z" },
 ]
 
 [[package]]
@@ -1268,7 +1268,7 @@ requires-dist = [
     { name = "dask-jobqueue" },
     { name = "ipykernel" },
     { name = "ipython" },
-    { name = "m4opt", specifier = ">=2.3.0" },
+    { name = "m4opt", specifier = ">=2.3.1" },
 ]
 
 [[package]]
