@@ -78,9 +78,9 @@ rate_quantiles = poisson_lognormal_rate_quantiles(
 
 with open("tables/selected-detected.tex", "w") as f:
     n_cats = len(is_class_by_category)
-    cols = "c" * n_cats
+    cols = "r@{}l" * n_cats
     n_runs = len(runs)
-    print(r"\begin{deluxetable}{l" + f"|{cols}" * n_runs + "}", file=f)
+    print(r"\begin{deluxetable*}{l" + f"|{cols}" * n_runs + "}", file=f)
     print(
         r"    \tablecaption{\label{tab:selected-detected}Expected Number of Events}",
         file=f,
@@ -88,14 +88,18 @@ with open("tables/selected-detected.tex", "w") as f:
     print(r"    \tablehead{", file=f)
     print(
         r"       ",
-        *(rf"\multicolumn{{3}}{{c}}{{{run}}}" for run in runs),
+        *(rf"\multicolumn{{{n_cats * 2}}}{{c}}{{{run}}}" for run in runs),
         sep=" & ",
         end=r" \\" "\n",
         file=f,
     )
     print(
         r"       ",
-        *(class_ for class_ in runs for class_ in is_class_by_category.keys()),
+        *(
+            rf"\multicolumn{{2}}{{c}}{{{class_}}}"
+            for class_ in runs
+            for class_ in is_class_by_category.keys()
+        ),
         sep=" & ",
         file=f,
     )
@@ -108,7 +112,7 @@ with open("tables/selected-detected.tex", "w") as f:
         for by_class in by_run:
             print(
                 *(
-                    " & ${}_{{-{}}}^{{+{}}}$".format(
+                    " & {} & $_{{-{}}}^{{+{}}}$".format(
                         *np.rint([mid, mid - lo, hi - mid]).astype(int)
                     )
                     for mid, lo, hi in by_class
@@ -122,4 +126,4 @@ with open("tables/selected-detected.tex", "w") as f:
         else:
             print(file=f)
     print(r"    \enddata", file=f)
-    print(r"\end{deluxetable}", file=f)
+    print(r"\end{deluxetable*}", file=f)
