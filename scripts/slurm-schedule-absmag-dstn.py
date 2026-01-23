@@ -28,6 +28,8 @@ def task(run, event_id):
 
 
 if __name__ == "__main__":
+    import os
+
     from astropy.table import QTable
     from dask_jobqueue import SLURMCluster
     from distributed import as_completed
@@ -40,7 +42,7 @@ if __name__ == "__main__":
 
     with (
         SLURMCluster(
-            account="umn131",
+            account=os.environ["SLURM_JOB_ACCOUNT"],
             cores=1,
             job_cpu=job_cpu,
             job_extra_directives=["--nodes=1"],
@@ -50,7 +52,7 @@ if __name__ == "__main__":
             ],
             memory="16GiB",
             processes=1,
-            queue="shared",
+            queue=os.environ["SLURM_JOB_PARTITION"],
             walltime=str(walltime),
             worker_extra_args=[
                 "--lifetime",
