@@ -37,6 +37,6 @@ if __name__ == "__main__":
         table["solution_status"],
         table["solution_time"],
         table["num_fields"],
-    ) = zip(*progress_map(process, table))
+    ) = zip(*progress_map(process, table, jobs=None))
 
     table.write(base_path / "events.ecsv", overwrite=True)
