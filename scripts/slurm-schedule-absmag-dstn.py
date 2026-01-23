@@ -44,7 +44,10 @@ if __name__ == "__main__":
             cores=1,
             job_cpu=job_cpu,
             job_extra_directives=["--nodes=1"],
-            job_script_prologue=[f"export OMP_NUM_THREADS={job_cpu}"],
+            job_script_prologue=[
+                f"export OMP_NUM_THREADS={job_cpu}",
+                "export CPLEX_PY_DISABLE_SIGHANDLER=1",
+            ],
             memory="16GiB",
             processes=1,
             queue="shared",
